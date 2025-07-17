@@ -342,7 +342,10 @@ export default function AgentComponent() {
       <div
         style={{
           display: "flex",
-          flexWrap: "wrap",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: "6px",
+          alignSelf: "stretch",
           border: "1px solid #ccc",
           marginBottom: "0px",
         }}
@@ -350,7 +353,7 @@ export default function AgentComponent() {
         <div style={{ margin: "2px", fontSize: "10px", fontStyle: "italic" }}>
           {chatConfig.suggestedPromptsTitle}
         </div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "2px" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "6px", alignSelf: "stretch" }}>
           {chatConfig.suggestedPrompts.map((prompt, index) => (
             <button
               key={index}
@@ -362,11 +365,14 @@ export default function AgentComponent() {
                 padding: "2px 4px",
                 borderRadius: "5px",
                 border: "1px solid #ccc",
-                margin: "2px",
+                margin: "0",
                 backgroundColor: hoveredIndex === index ? "#ddd" : "#f4f4f4",
                 color: hoveredIndex === index ? "#000" : "#888",
                 fontSize: "12px",
                 cursor: "pointer",
+                textAlign: "left",
+                width: "100%",
+                maxWidth: "400px",
               }}
             >
               {prompt}
