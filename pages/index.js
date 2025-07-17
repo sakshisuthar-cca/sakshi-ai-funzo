@@ -296,13 +296,18 @@ export default function AgentComponent() {
   return (
     <div
       style={{
-        padding: "5px",
-        width: "100vw",
-        maxWidth: "600px",
-        margin: "0 auto",
-        fontFamily: "Arial, sans-serif",
-        borderRadius: "5px",
-        border: "1px solid #ccc",
+        display: "flex",
+        width: "350px",
+        padding: "212px 12px 50px 12px",
+        flexDirection: "column",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        // Remove or override previous styles
+        maxWidth: undefined,
+        margin: undefined,
+        borderRadius: undefined,
+        border: undefined,
+        fontFamily: undefined,
       }}
     >
       {/* Descriptive header for the chat application */}
