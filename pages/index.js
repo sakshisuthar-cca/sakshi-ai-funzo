@@ -308,39 +308,41 @@ export default function AgentComponent() {
       {/* Descriptive header for the chat application */}
 
       {/* Chat conversation container displaying messages in bubbles */}
-      <div
-        className="chat-container"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "5px",
-          marginBottom: "0px",
-          height: chatConfig.maxChatHeight, // Set a fixed height for the chat container
-          overflowY: "auto", // Enable vertical scrolling
-          border: "2px solid #000", // Optional: border around the chat area
-          padding: "0px",
-          borderRadius: "5px 5px 0 0",
-          backgroundColor: "#eee",
-          width: "100%",
-        }}
-      >
-        {conversation.map((msg, index) => (
-          <div
-            key={index}
-            style={msg.role === "user" ? bubbleStyles.user : bubbleStyles.agent}
-          >
-            {msg.role === "agent" ? (
-              // Render the agent's response as Markdown.
-              <ReactMarkdown>{msg.content}</ReactMarkdown>
-            ) : (
-              // Display user messages as plain text.
-              msg.content
-            )}
-          </div>
-        ))}
-        {/* Dummy element to ensure the latest message is scrolled into view */}
-        <div ref={messagesEndRef} />
-      </div>
+      {(conversation.length > 0 || promptSelected) && (
+        <div
+          className="chat-container"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "5px",
+            marginBottom: "0px",
+            height: chatConfig.maxChatHeight, // Set a fixed height for the chat container
+            overflowY: "auto", // Enable vertical scrolling
+            border: "2px solid #000", // Optional: border around the chat area
+            padding: "0px",
+            borderRadius: "5px 5px 0 0",
+            backgroundColor: "#eee",
+            width: "100%",
+          }}
+        >
+          {conversation.map((msg, index) => (
+            <div
+              key={index}
+              style={msg.role === "user" ? bubbleStyles.user : bubbleStyles.agent}
+            >
+              {msg.role === "agent" ? (
+                // Render the agent's response as Markdown.
+                <ReactMarkdown>{msg.content}</ReactMarkdown>
+              ) : (
+                // Display user messages as plain text.
+                msg.content
+              )}
+            </div>
+          ))}
+          {/* Dummy element to ensure the latest message is scrolled into view */}
+          <div ref={messagesEndRef} />
+        </div>
+      )}
 
       {/* Suggested Prompts Section */}
       {!promptSelected && (
