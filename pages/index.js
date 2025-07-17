@@ -300,9 +300,10 @@ export default function AgentComponent() {
         width: "100vw",
         maxWidth: "600px",
         margin: "0 auto",
-        fontFamily: "Arial, sans-serif",
+        fontFamily: "Geist, 'Geist Sans', 'Geist Mono', Arial, sans-serif",
         borderRadius: "5px",
         border: "1px solid #ccc",
+        height: "494px", // Fixed height for the UI
       }}
     >
       {/* Descriptive header for the chat application */}
@@ -411,7 +412,7 @@ export default function AgentComponent() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             style={{
-              flexGrow: 1,
+              width: "326px",
               padding: "10px",
               border: "none",
               outline: "none",
