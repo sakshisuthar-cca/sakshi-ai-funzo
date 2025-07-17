@@ -438,13 +438,13 @@ export default function AgentComponent() {
               justifyContent: "center",
               borderRadius: "9999px",
               transition: "opacity 0.2s ease",
-              backgroundColor: isSubmitHovered ? "#007BFF" : "#000",
-              color: isSubmitHovered ? "#fff" : "#fff",
               height: "36px",
               width: "36px",
               border: "none",
               cursor: isLoading ? "default" : "pointer",
               marginLeft: "8px",
+              background: "transparent",
+              boxShadow: "none",
             }}
           >
             {!isLoading ? (
@@ -455,7 +455,8 @@ export default function AgentComponent() {
                 viewBox="0 0 12 12"
                 fill="none"
               >
-                <path d="M9.13125 6.75L4.93125 10.95L6 12L12 6L6 0L4.93125 1.05L9.13125 5.25H0V6.75H9.13125Z" fill="#1C1B1F" />
+                <path d="M9.13125 6.75L4.93125 10.95L6 12L12 6L6 0L4.93125 1.05L9.13125 5.25H0V6.75H9.13125Z" 
+                 fill={isSubmitHovered ? "#2642DE" : "#1C1B1F"} />
               </svg>
             ) : (
               <svg
