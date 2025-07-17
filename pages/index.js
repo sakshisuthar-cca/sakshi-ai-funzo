@@ -462,24 +462,28 @@ export default function AgentComponent() {
               justifyContent: "center",
               borderRadius: "9999px",
               transition: "opacity 0.2s ease",
-              height: "36px",
-              width: "36px",
               border: "none",
               cursor: isLoading ? "default" : "pointer",
               background: "transparent",
               boxShadow: "none",
               paddingLeft: "20px",
+              paddingTop: 0,
+              paddingRight: 0,
+              paddingBottom: 0,
+              width: "auto",
+              height: "auto",
             }}
           >
             {!isLoading ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
+                width="16"
+                height="16"
                 viewBox="0 0 12 12"
                 fill="none"
+                style={{ width: "16px", height: "16px", aspectRatio: "1 / 1", display: "block" }}
               >
-                <path d="M9.13125 6.75L4.93125 10.95L6 12L12 6L6 0L4.93125 1.05L9.13125 5.25H0V6.75H9.13125Z" 
+                <path d="M9.13125 6.75L4.93125 10.95L6 12L12 6L6 0L4.93125 1.05L9.13125 5.25H0V6.75H9.13125Z"
                  fill={isSubmitHovered ? "#2642DE" : "#1C1B1F"} />
               </svg>
             ) : (
