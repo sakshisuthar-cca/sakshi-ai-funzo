@@ -402,8 +402,8 @@ export default function AgentComponent() {
                   lineHeight: "12px",
                   cursor: "pointer",
                   textAlign: "left",
-                  width: "100%",
-                  maxWidth: "400px",
+                  width: "auto",
+                  height: "auto",
                 }}
               >
                 {prompt}
@@ -418,14 +418,12 @@ export default function AgentComponent() {
         <div
           style={{
             display: "flex",
-            padding: "10px 16px",
+            padding: "12px 20px",
             justifyContent: "space-between",
             alignItems: "center",
-            alignSelf: "stretch",
-            borderRadius: "16px",
+            borderRadius: "24px",
             background: "#F4F4F4",
             width: "100%",
-            // Removed old border/background styles
           }}
         >
           <input
@@ -442,7 +440,7 @@ export default function AgentComponent() {
               backgroundColor: "#F4F4F4",
               color: "#161616",
               fontFamily: "Geist, 'Geist Sans', 'Geist Mono', Arial, sans-serif",
-              fontSize: "12px",
+              fontSize: "16px",
               fontStyle: "normal",
               fontWeight: 400,
               lineHeight: "normal",
