@@ -360,9 +360,10 @@ export default function AgentComponent() {
         >
           <div style={{
             margin: "2px",
+            alignSelf: "stretch",
             color: "#161616",
             fontFamily: "Geist, 'Geist Sans', 'Geist Mono', Arial, sans-serif",
-            fontSize: "10px",
+            fontSize: "12px",
             fontStyle: "normal",
             fontWeight: 500,
             lineHeight: "normal",
@@ -370,7 +371,13 @@ export default function AgentComponent() {
           }}>
             {chatConfig.suggestedPromptsTitle}
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "6px", alignSelf: "stretch" }}>
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: "8px",
+            alignSelf: "stretch"
+          }}>
             {chatConfig.suggestedPrompts.map((prompt, index) => (
               <button
                 key={index}
@@ -379,13 +386,20 @@ export default function AgentComponent() {
                 onMouseOut={handlePromptMouseOut}
                 disabled={isLoading}
                 style={{
-                  padding: "2px 4px",
-                  borderRadius: "5px",
-                  border: "1px solid #ccc",
+                  display: "flex",
+                  padding: "10px 14px",
+                  alignItems: "center",
+                  gap: "6px",
+                  borderRadius: "16px",
+                  border: "1px solid #2642DE",
                   margin: "0",
-                  backgroundColor: hoveredIndex === index ? "#ddd" : "#f4f4f4",
-                  color: hoveredIndex === index ? "#000" : "#888",
-                  fontSize: "12px",
+                  backgroundColor: "transparent",
+                  color: "#2642DE",
+                  fontFamily: "Geist, 'Geist Sans', 'Geist Mono', Arial, sans-serif",
+                  fontSize: "14px",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  lineHeight: "12px",
                   cursor: "pointer",
                   textAlign: "left",
                   width: "100%",
