@@ -298,7 +298,7 @@ export default function AgentComponent() {
       style={{
         padding: "5px",
         width: "100vw",
-        maxWidth: "600px",
+        maxWidth: "350px",
         margin: "0 auto",
         fontFamily: "Geist, 'Geist Sans', 'Geist Mono', Arial, sans-serif",
         borderRadius: "5px",
