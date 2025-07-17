@@ -477,18 +477,6 @@ export default function AgentComponent() {
         </div>
       </form>
 
-      {/* Tiny display of user ID and session ID */}
-      <div
-        style={{
-          marginTop: "2px",
-          fontSize: "9px",
-          color: "#999",
-          textAlign: "center",
-        }}
-      >
-        User ID: {userId} | Session ID: {sessionId}
-      </div>
-
       {/* Display error message if one occurs */}
       {error && (
         <div style={{ color: "red", marginTop: "20px" }}>
