@@ -102,6 +102,9 @@ export default function AgentComponent() {
   // State to track if the submit button is hovered.
   const [isSubmitHovered, setIsSubmitHovered] = useState(false);
 
+  // State to track if a prompt has been selected
+  const [promptSelected, setPromptSelected] = useState(false);
+
   // Initialize session ID and user ID on the client side
   useEffect(() => {
     setSessionId(getSessionId());
@@ -264,6 +267,7 @@ export default function AgentComponent() {
    * @param {Object} prompt - The prompt object containing text and autoSubmit flag.
    */
   const handlePromptClick = async (prompt) => {
+    setPromptSelected(true); // Hide prompts after selection
     // Set the chat input to the prompt text.
     setMessage(prompt);
     // Submit the prompt to the chat.
@@ -339,47 +343,49 @@ export default function AgentComponent() {
       </div>
 
       {/* Suggested Prompts Section */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          gap: "6px",
-          alignSelf: "stretch",
-          border: "1px solid #ccc",
-          marginBottom: "0px",
-        }}
-      >
-        <div style={{ margin: "2px", fontSize: "10px", fontStyle: "italic" }}>
-          {chatConfig.suggestedPromptsTitle}
+      {!promptSelected && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: "6px",
+            alignSelf: "stretch",
+            border: "1px solid #ccc",
+            marginBottom: "0px",
+          }}
+        >
+          <div style={{ margin: "2px", fontSize: "10px", fontStyle: "italic" }}>
+            {chatConfig.suggestedPromptsTitle}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "6px", alignSelf: "stretch" }}>
+            {chatConfig.suggestedPrompts.map((prompt, index) => (
+              <button
+                key={index}
+                onClick={() => handlePromptClick(prompt)}
+                onMouseOver={() => handlePromptMouseOver(index)}
+                onMouseOut={handlePromptMouseOut}
+                disabled={isLoading}
+                style={{
+                  padding: "2px 4px",
+                  borderRadius: "5px",
+                  border: "1px solid #ccc",
+                  margin: "0",
+                  backgroundColor: hoveredIndex === index ? "#ddd" : "#f4f4f4",
+                  color: hoveredIndex === index ? "#000" : "#888",
+                  fontSize: "12px",
+                  cursor: "pointer",
+                  textAlign: "left",
+                  width: "100%",
+                  maxWidth: "400px",
+                }}
+              >
+                {prompt}
+              </button>
+            ))}
+          </div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "6px", alignSelf: "stretch" }}>
-          {chatConfig.suggestedPrompts.map((prompt, index) => (
-            <button
-              key={index}
-              onClick={() => handlePromptClick(prompt)}
-              onMouseOver={() => handlePromptMouseOver(index)}
-              onMouseOut={handlePromptMouseOut}
-              disabled={isLoading}
-              style={{
-                padding: "2px 4px",
-                borderRadius: "5px",
-                border: "1px solid #ccc",
-                margin: "0",
-                backgroundColor: hoveredIndex === index ? "#ddd" : "#f4f4f4",
-                color: hoveredIndex === index ? "#000" : "#888",
-                fontSize: "12px",
-                cursor: "pointer",
-                textAlign: "left",
-                width: "100%",
-                maxWidth: "400px",
-              }}
-            >
-              {prompt}
-            </button>
-          ))}
-        </div>
-      </div>
+      )}
 
       {/* Chat input form for the user to send messages */}
       <form onSubmit={handleSubmit} style={{ display: "flex", gap: "0px" }}>
@@ -408,6 +414,12 @@ export default function AgentComponent() {
               border: "none",
               outline: "none",
               backgroundColor: "#F4F4F4",
+              color: "#161616",
+              fontFamily: "Geist, 'Geist Sans', 'Geist Mono', Arial, sans-serif",
+              fontSize: "12px",
+              fontStyle: "normal",
+              fontWeight: 400,
+              lineHeight: "normal",
             }}
           />
           <button
