@@ -412,15 +412,14 @@ export default function AgentComponent() {
         <div
           style={{
             display: "flex",
+            padding: "10px 16px",
+            justifyContent: "space-between",
             alignItems: "center",
-            gap: 0,
+            alignSelf: "stretch",
+            borderRadius: "16px",
+            background: "#F4F4F4",
             width: "100%",
-            borderBottom: "1px solid #ccc",
-            borderLeft: "1px solid #ccc",
-            borderRight: "1px solid #ccc",
-            borderRadius: "0 0 5px 5px",
-            overflow: "hidden",
-            backgroundColor: "#fff",
+            // Removed old border/background styles
           }}
         >
           <input
@@ -434,7 +433,7 @@ export default function AgentComponent() {
               padding: "10px",
               border: "none",
               outline: "none",
-              backgroundColor: "#fff",
+              backgroundColor: "#F4F4F4",
             }}
           />
           <button
@@ -454,8 +453,9 @@ export default function AgentComponent() {
               color: isSubmitHovered ? "#fff" : "#fff",
               height: "36px",
               width: "36px",
-              border: "5px solid #fff",
+              border: "none",
               cursor: isLoading ? "default" : "pointer",
+              marginLeft: "8px",
             }}
           >
             {!isLoading ? (
