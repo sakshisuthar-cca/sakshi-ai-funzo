@@ -358,7 +358,16 @@ export default function AgentComponent() {
             marginBottom: "0px",
           }}
         >
-          <div style={{ margin: "2px", fontSize: "10px", fontStyle: "italic" }}>
+          <div style={{
+            margin: "2px",
+            color: "#161616",
+            fontFamily: "Geist, 'Geist Sans', 'Geist Mono', Arial, sans-serif",
+            fontSize: "10px",
+            fontStyle: "normal",
+            fontWeight: 500,
+            lineHeight: "normal",
+            textTransform: "uppercase"
+          }}>
             {chatConfig.suggestedPromptsTitle}
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "6px", alignSelf: "stretch" }}>
@@ -413,7 +422,7 @@ export default function AgentComponent() {
             onChange={(e) => setMessage(e.target.value)}
             style={{
               width: "326px",
-              padding: "10px",
+              padding: 0,
               border: "none",
               outline: "none",
               backgroundColor: "#F4F4F4",
@@ -423,6 +432,8 @@ export default function AgentComponent() {
               fontStyle: "normal",
               fontWeight: 400,
               lineHeight: "normal",
+              height: "auto",
+              minHeight: "1.5em",
             }}
           />
           <button
