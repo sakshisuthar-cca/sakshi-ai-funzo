@@ -433,7 +433,8 @@ export default function AgentComponent() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             style={{
-              width: "326px",
+              width: "100%",
+              maxWidth: "326px",
               padding: 0,
               border: "none",
               outline: "none",
@@ -465,9 +466,9 @@ export default function AgentComponent() {
               width: "36px",
               border: "none",
               cursor: isLoading ? "default" : "pointer",
-              marginLeft: "8px",
               background: "transparent",
               boxShadow: "none",
+              paddingLeft: "20px",
             }}
           >
             {!isLoading ? (
