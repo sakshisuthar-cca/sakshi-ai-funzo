@@ -114,6 +114,7 @@ export default function AgentComponent() {
    */
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (message.trim()) setPromptSelected(true); // Hide prompts only when sending
     submitMessage(message);
   };
 
@@ -360,7 +361,7 @@ export default function AgentComponent() {
       )}
 
       {/* Suggested Prompts Section */}
-      {!promptSelected && (
+      {!promptSelected && !message && (
         <div
           style={{
             position: "absolute",
@@ -448,7 +449,9 @@ export default function AgentComponent() {
             id="message"
             placeholder={chatConfig.chatInputPlaceholder}
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
             style={{
               width: "100%",
               maxWidth: "326px",
@@ -497,7 +500,13 @@ export default function AgentComponent() {
               height="16"
               viewBox="0 0 12 12"
               fill="none"
-              style={{ width: "16px", height: "16px", aspectRatio: "1 / 1", display: "block" }}
+              style={{
+                width: "16px",
+                height: "16px",
+                aspectRatio: "1 / 1",
+                display: "block",
+                animation: isLoading ? "arrow-bounce 0.6s infinite alternate" : undefined
+              }}
             >
               <path d="M9.13125 6.75L4.93125 10.95L6 12L12 6L6 0L4.93125 1.05L9.13125 5.25H0V6.75H9.13125Z"
                 fill={isLoading ? "#D3D3D3" : isSubmitHovered ? "#2642DE" : "#1C1B1F"} />
@@ -538,6 +547,10 @@ export default function AgentComponent() {
           to {
             transform: rotate(360deg);
           }
+        }
+        @keyframes arrow-bounce {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-6px); }
         }
       `}</style>
     </div>
