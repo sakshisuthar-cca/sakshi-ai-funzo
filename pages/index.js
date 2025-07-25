@@ -253,15 +253,12 @@ export default function AgentComponent() {
       marginRight: "12px",
       wordWrap: "break-word",
       whiteSpace: "pre-wrap",
+      boxSizing: "border-box",
       textAlign: "left", // Ensures proper alignment
     },
     agent: {
-      display: "inline-flex",
+      display: "inline-block",
       padding: "10px 16px",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "flex-start",
-      gap: "4px",
       alignSelf: "flex-start",
       borderRadius: "16px 16px 16px 0",
       background: "#F4F4F4",
@@ -273,8 +270,12 @@ export default function AgentComponent() {
       lineHeight: "14px",
       margin: 0,
       maxWidth: "242px",
+      width: "fit-content",
       marginLeft: "12px",
-      wordBreak: "break-word",
+      wordWrap: "break-word",
+      whiteSpace: "pre-wrap",
+      boxSizing: "border-box",
+      textAlign: "left", // Ensures proper alignment
     },
   };
 
