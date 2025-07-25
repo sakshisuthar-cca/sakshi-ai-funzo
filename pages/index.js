@@ -375,6 +375,13 @@ export default function AgentComponent() {
                         return <p className="main-point" {...props}>{cleanChildren}</p>;
                       }
                     },
+                    h1: ({ children, ...props }) => <span className="heading" {...props}>{children}</span>,
+                    h2: ({ children, ...props }) => <span className="heading" {...props}>{children}</span>,
+                    h3: ({ children, ...props }) => <span className="heading" {...props}>{children}</span>,
+                    h4: ({ children, ...props }) => <span className="heading" {...props}>{children}</span>,
+                    h5: ({ children, ...props }) => <span className="heading" {...props}>{children}</span>,
+                    h6: ({ children, ...props }) => <span className="heading" {...props}>{children}</span>,
+                    p: ({ children, ...props }) => <span className="body" {...props}>{children}</span>,
                   }}
                 >
                   {msg.content}
@@ -621,6 +628,18 @@ export default function AgentComponent() {
         .sub-point {
           margin: 4px 0 4px 16px;  /* Indentation for hierarchy */
           font-size: 0.95em;
+        }
+        .bubble p {
+          margin: 4px 0;
+          line-height: 1.4;
+        }
+        .bubble .heading {
+          font-weight: 600;
+          margin: 6px 0 2px;
+        }
+        .bubble .body {
+          font-weight: 400;
+          margin: 2px 0;
         }
       `}</style>
     </div>
