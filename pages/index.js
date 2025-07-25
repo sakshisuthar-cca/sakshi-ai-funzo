@@ -302,7 +302,6 @@ export default function AgentComponent() {
         margin: "0 auto",
         fontFamily: "Geist, 'Geist Sans', 'Geist Mono', Arial, sans-serif",
         borderRadius: "5px",
-        border: "1px solid #ccc",
         height: "494px", // Fixed height for the UI
         position: "relative",
       }}
@@ -320,7 +319,6 @@ export default function AgentComponent() {
             marginBottom: "0px",
             height: chatConfig.maxChatHeight, // Set a fixed height for the chat container
             overflowY: "auto", // Enable vertical scrolling
-            border: "2px solid #000", // Optional: border around the chat area
             padding: "0px",
             borderRadius: "5px 5px 0 0",
             backgroundColor: "#eee",
@@ -359,7 +357,6 @@ export default function AgentComponent() {
             alignItems: "center",
             gap: "8px",
             alignSelf: "stretch",
-            border: "1px solid #ccc",
             marginBottom: "0px",
           }}
         >
@@ -419,7 +416,7 @@ export default function AgentComponent() {
       )}
 
       {/* Chat input form for the user to send messages */}
-      <form onSubmit={handleSubmit} style={{ display: "flex", gap: "0px" }}>
+      <form onSubmit={handleSubmit} style={{ display: "flex", gap: "0px", width: "100%", position: "absolute", left: 0, right: 0, bottom: "30px" }}>
         <div
           style={{
             display: "flex",
@@ -429,7 +426,6 @@ export default function AgentComponent() {
             borderRadius: "24px",
             background: "#F4F4F4",
             width: "100%",
-            marginBottom: "30px",
           }}
         >
           <input
