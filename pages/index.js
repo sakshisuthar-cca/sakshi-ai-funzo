@@ -322,7 +322,7 @@ export default function AgentComponent() {
             height: chatConfig.maxChatHeight, // Set a fixed height for the chat container
             overflowY: "scroll", // Enable vertical scrolling
             overscrollBehavior: "contain", // Prevent scroll chaining to the page
-            padding: "0px",
+            padding: "0 12px",
             borderRadius: "5px 5px 0 0",
             backgroundColor: "#fff",
             width: "100%",
