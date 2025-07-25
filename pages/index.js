@@ -337,7 +337,7 @@ export default function AgentComponent() {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "12px",
+            gap: "18px",
             marginBottom: "0px",
             height: chatConfig.maxChatHeight, // Set a fixed height for the chat container
             overflowY: "auto", // Enable vertical scrolling
@@ -529,44 +529,17 @@ export default function AgentComponent() {
               height: "auto",
             }}
           >
-            {!isLoading ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 12 12"
-                fill="none"
-                style={{ width: "16px", height: "16px", aspectRatio: "1 / 1", display: "block" }}
-              >
-                <path d="M9.13125 6.75L4.93125 10.95L6 12L12 6L6 0L4.93125 1.05L9.13125 5.25H0V6.75H9.13125Z"
-                 fill={isSubmitHovered ? "#2642DE" : "#1C1B1F"} />
-              </svg>
-            ) : (
-              <svg
-                width="36px"
-                height="36px"
-                viewBox="0 0 50 50"
-                style={{ animation: "spin 1s linear infinite" }}
-              >
-                <circle
-                  cx="25"
-                  cy="25"
-                  r="20"
-                  stroke="#888"
-                  strokeWidth="12"
-                  fill="none"
-                />
-                <circle
-                  cx="25"
-                  cy="25"
-                  r="20"
-                  stroke="#fff"
-                  strokeWidth="12"
-                  strokeDasharray="31.4 31.4"
-                  fill="none"
-                />
-              </svg>
-            )}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 12 12"
+              fill="none"
+              style={{ width: "16px", height: "16px", aspectRatio: "1 / 1", display: "block" }}
+            >
+              <path d="M9.13125 6.75L4.93125 10.95L6 12L12 6L6 0L4.93125 1.05L9.13125 5.25H0V6.75H9.13125Z"
+                fill={isLoading ? "#D3D3D3" : isSubmitHovered ? "#2642DE" : "#1C1B1F"} />
+            </svg>
           </button>
         </div>
       </form>
@@ -629,17 +602,14 @@ export default function AgentComponent() {
           margin: 4px 0 4px 16px;  /* Indentation for hierarchy */
           font-size: 0.95em;
         }
-        .bubble p {
+        .bubble p, .bubble .main-point, .bubble .sub-point, .bubble .body, .bubble .heading {
+          font-weight: 400;
           margin: 4px 0;
-          line-height: 1.4;
+          line-height: 1;
         }
         .bubble .heading {
           font-weight: 600;
           margin: 6px 0 2px;
-        }
-        .bubble .body {
-          font-weight: 400;
-          margin: 2px 0;
         }
       `}</style>
     </div>
