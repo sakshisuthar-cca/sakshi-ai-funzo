@@ -575,13 +575,15 @@ export default function AgentComponent() {
         }
       `}</style>
       <style jsx global>{`
-        .bubble ul {
-          list-style-position: inside;
-          padding-left: 0;
-          margin-left: 0;
+        .bubble ul,
+        .bubble ol {
+          list-style-position: outside; /* Bullet stays on the same line */
+          padding-left: 16px;           /* Space for bullets */
+          margin: 8px 0;                /* Vertical spacing between lists */
         }
         .bubble li {
-          margin: 4px 0;
+          display: list-item;           /* Restores default bullet + text inline behavior */
+          margin: 4px 0;                /* Small spacing between items */
         }
       `}</style>
     </div>
