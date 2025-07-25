@@ -366,6 +366,10 @@ export default function AgentComponent() {
                         return child;
                       });
                       return <li {...props}>{cleanChildren}</li>;
+                    },
+                    p: ({ children, ...props }) => {
+                      // Ensure paragraphs don't create block spacing inside lists
+                      return <p {...props}>{children}</p>;
                     }
                   }}
                 >
@@ -593,17 +597,16 @@ export default function AgentComponent() {
       <style jsx global>{`
         .bubble ul,
         .bubble ol {
-          list-style-position: outside;
-          padding-left: 20px; /* Space for bullets */
-          margin: 8px 0;                /* Vertical spacing between lists */
+          list-style-position: outside;  /* Bullets stay with text */
+          padding-left: 20px;            /* Space for bullet */
+          margin: 8px 0;
         }
         .bubble li {
-          display: list-item;   /* Restore default bullet behavior */
-          margin: 4px 0;                /* Small spacing between items */
-          text-indent: 0;       /* Prevent extra indentation */
+          display: list-item;            /* Ensures default bullet behavior */
+          margin: 4px 0;
         }
         .bubble li p {
-          display: inline;      /* Ensure text inside li is inline */
+          display: inline;               /* If <p> exists, keep text inline */
           margin: 0;
         }
       `}</style>
