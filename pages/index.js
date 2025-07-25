@@ -27,6 +27,7 @@ import { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 // Import UUID to generate session ID
 import { v4 as uuidv4 } from "uuid";
+import React from "react"; // Added for React.Children.map
 
 /**
  * Retrieves or generates a session ID and stores it in sessionStorage.
@@ -354,7 +355,22 @@ export default function AgentComponent() {
             >
               {msg.role === "agent" ? (
                 // Render the agent's response as Markdown.
-                <ReactMarkdown>{msg.content}</ReactMarkdown>
+                <ReactMarkdown
+                  components={{
+                    li: ({ children, ...props }) => {
+                      // Remove any <p> tags inside <li> and render children directly
+                      const cleanChildren = React.Children.map(children, child => {
+                        if (React.isValidElement(child) && child.type === 'p') {
+                          return child.props.children;
+                        }
+                        return child;
+                      });
+                      return <li {...props}>{cleanChildren}</li>;
+                    }
+                  }}
+                >
+                  {msg.content}
+                </ReactMarkdown>
               ) : (
                 // Display user messages as plain text.
                 msg.content
@@ -577,13 +593,18 @@ export default function AgentComponent() {
       <style jsx global>{`
         .bubble ul,
         .bubble ol {
-          list-style-position: outside; /* Bullet stays on the same line */
-          padding-left: 16px;           /* Space for bullets */
+          list-style-position: outside;
+          padding-left: 20px; /* Space for bullets */
           margin: 8px 0;                /* Vertical spacing between lists */
         }
         .bubble li {
-          display: list-item;           /* Restores default bullet + text inline behavior */
+          display: list-item;   /* Restore default bullet behavior */
           margin: 4px 0;                /* Small spacing between items */
+          text-indent: 0;       /* Prevent extra indentation */
+        }
+        .bubble li p {
+          display: inline;      /* Ensure text inside li is inline */
+          margin: 0;
         }
       `}</style>
     </div>
