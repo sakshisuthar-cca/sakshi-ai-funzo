@@ -357,20 +357,24 @@ export default function AgentComponent() {
                 // Render the agent's response as Markdown.
                 <ReactMarkdown
                   components={{
-                    li: ({ children, ...props }) => {
-                      // Remove any <p> tags inside <li> and render children directly
+                    ul: ({ children }) => <>{children}</>,
+                    ol: ({ children }) => <>{children}</>,
+                    li: ({ children, node, ...props }) => {
+                      // Check if this li is a subpoint (nested inside another li)
+                      const isSubPoint = node?.parent?.type === 'listItem';
+                      // Remove <p> wrappers if present
                       const cleanChildren = React.Children.map(children, child => {
                         if (React.isValidElement(child) && child.type === 'p') {
                           return child.props.children;
                         }
                         return child;
                       });
-                      return <li {...props}>{cleanChildren}</li>;
+                      if (isSubPoint) {
+                        return <p className="sub-point" {...props}>{cleanChildren}</p>;
+                      } else {
+                        return <p className="main-point" {...props}>{cleanChildren}</p>;
+                      }
                     },
-                    p: ({ children, ...props }) => {
-                      // Ensure paragraphs don't create block spacing inside lists
-                      return <p {...props}>{children}</p>;
-                    }
                   }}
                 >
                   {msg.content}
@@ -597,17 +601,26 @@ export default function AgentComponent() {
       <style jsx global>{`
         .bubble ul,
         .bubble ol {
-          list-style-position: outside;  /* Bullets stay with text */
-          padding-left: 20px;            /* Space for bullet */
-          margin: 8px 0;
+          list-style: none;    /* Remove bullets */
+          padding: 0;
+          margin: 0;
         }
         .bubble li {
-          display: list-item;            /* Ensures default bullet behavior */
-          margin: 4px 0;
+          margin: 8px 0;       /* Space between points */
+          display: block;
         }
-        .bubble li p {
-          display: inline;               /* If <p> exists, keep text inline */
-          margin: 0;
+        .bubble li li {
+          margin-left: 16px;   /* Indent subpoint text */
+          font-size: 0.95em;   /* Slightly smaller text (optional) */
+          color: #444;         /* Slightly muted color (optional) */
+        }
+        .main-point {
+          margin: 8px 0;
+          font-weight: 500;
+        }
+        .sub-point {
+          margin: 4px 0 4px 16px;  /* Indentation for hierarchy */
+          font-size: 0.95em;
         }
       `}</style>
     </div>
