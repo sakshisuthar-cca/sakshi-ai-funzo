@@ -235,8 +235,12 @@ export default function AgentComponent() {
    */
   const bubbleStyles = {
     user: {
-      display: "inline-block",
+      display: "inline-flex",
       padding: "10px 16px",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      gap: "4px",
       alignSelf: "flex-end",
       borderRadius: "16px 16px 0 16px",
       border: "1.5px solid #2642DE",
@@ -251,7 +255,6 @@ export default function AgentComponent() {
       maxWidth: "242px",
       marginRight: "12px",
       wordBreak: "break-word",
-      textAlign: "left",
     },
     agent: {
       display: "inline-flex",
@@ -350,17 +353,7 @@ export default function AgentComponent() {
             >
               {msg.role === "agent" ? (
                 // Render the agent's response as Markdown.
-                <div style={{ width: "100%" }}>
-                  <ReactMarkdown
-                    components={{
-                      ul: ({ node, ...props }) => <ul style={{ paddingLeft: 0, marginLeft: 0, listStylePosition: 'inside' }} {...props} />,
-                      ol: ({ node, ...props }) => <ol style={{ paddingLeft: 0, marginLeft: 0, listStylePosition: 'inside' }} {...props} />,
-                      li: ({ node, ...props }) => <li style={{ paddingLeft: 0, marginLeft: 0 }} {...props} />,
-                    }}
-                  >
-                    {msg.content}
-                  </ReactMarkdown>
-                </div>
+                <ReactMarkdown>{msg.content}</ReactMarkdown>
               ) : (
                 // Display user messages as plain text.
                 msg.content
