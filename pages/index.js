@@ -349,6 +349,7 @@ export default function AgentComponent() {
           {conversation.map((msg, index) => (
             <div
               key={index}
+              className="bubble"
               style={msg.role === "user" ? bubbleStyles.user : bubbleStyles.agent}
             >
               {msg.role === "agent" ? (
@@ -571,6 +572,16 @@ export default function AgentComponent() {
           to {
             transform: rotate(360deg);
           }
+        }
+      `}</style>
+      <style jsx global>{`
+        .bubble ul {
+          list-style-position: inside;
+          padding-left: 0;
+          margin-left: 0;
+        }
+        .bubble li {
+          margin: 4px 0;
         }
       `}</style>
     </div>
