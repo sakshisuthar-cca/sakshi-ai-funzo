@@ -220,7 +220,7 @@ export default function AgentComponent() {
   const bubbleStyles = {
     user: {
       display: "inline-flex",
-      padding: "0 16px",
+      padding: "12px 16px",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "flex-start",
