@@ -250,7 +250,7 @@ export default function AgentComponent() {
       fontSize: "14px",
       fontStyle: "normal",
       fontWeight: 400,
-      lineHeight: "14px",
+      lineHeight: 1.2,
       margin: 0,
       maxWidth: "80%",
       wordBreak: "break-word",
@@ -270,7 +270,7 @@ export default function AgentComponent() {
       fontSize: "14px",
       fontStyle: "normal",
       fontWeight: 400,
-      lineHeight: "14px",
+      lineHeight: 1.2,
       margin: 0,
       maxWidth: "80%",
       wordBreak: "break-word",
@@ -334,7 +334,7 @@ export default function AgentComponent() {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "12px",
+            gap: "0px",
             marginBottom: "0px",
             height: chatConfig.maxChatHeight, // Set a fixed height for the chat container
             overflowY: "auto", // Enable vertical scrolling
@@ -344,10 +344,23 @@ export default function AgentComponent() {
             width: "100%",
           }}
         >
-          {conversation.map((msg, index) => (
+        {conversation.map((msg, index) => {
+          const isUser = msg.role === "user";
+          const isPrevUser = index > 0 && conversation[index - 1].role === "user";
+          const isPrevAgent = index > 0 && conversation[index - 1].role === "agent";
+          let marginTop = 0;
+          if (index > 0) {
+            if ((isUser && isPrevAgent) || (!isUser && isPrevUser)) {
+              marginTop = 18;
+            }
+          }
+          return (
             <div
               key={index}
-              style={msg.role === "user" ? bubbleStyles.user : bubbleStyles.agent}
+              style={{
+                ...(isUser ? bubbleStyles.user : bubbleStyles.agent),
+                marginTop: marginTop,
+              }}
             >
               {msg.role === "agent" ? (
                 // Render the agent's response as Markdown.
@@ -357,9 +370,10 @@ export default function AgentComponent() {
                 msg.content
               )}
             </div>
-          ))}
-          {/* Dummy element to ensure the latest message is scrolled into view */}
-          <div ref={messagesEndRef} />
+          );
+        })}
+        {/* Dummy element to ensure the latest message is scrolled into view */}
+        <div ref={messagesEndRef} />
         </div>
       )}
 
@@ -495,44 +509,17 @@ export default function AgentComponent() {
               height: "auto",
             }}
           >
-            {!isLoading ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 12 12"
-                fill="none"
-                style={{ width: "16px", height: "16px", aspectRatio: "1 / 1", display: "block" }}
-              >
-                <path d="M9.13125 6.75L4.93125 10.95L6 12L12 6L6 0L4.93125 1.05L9.13125 5.25H0V6.75H9.13125Z"
-                 fill={isSubmitHovered ? "#2642DE" : "#1C1B1F"} />
-              </svg>
-            ) : (
-              <svg
-                width="36px"
-                height="36px"
-                viewBox="0 0 50 50"
-                style={{ animation: "spin 1s linear infinite" }}
-              >
-                <circle
-                  cx="25"
-                  cy="25"
-                  r="20"
-                  stroke="#888"
-                  strokeWidth="12"
-                  fill="none"
-                />
-                <circle
-                  cx="25"
-                  cy="25"
-                  r="20"
-                  stroke="#fff"
-                  strokeWidth="12"
-                  strokeDasharray="31.4 31.4"
-                  fill="none"
-                />
-              </svg>
-            )}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 12 12"
+              fill="none"
+              style={{ width: "16px", height: "16px", aspectRatio: "1 / 1", display: "block" }}
+            >
+              <path d="M9.13125 6.75L4.93125 10.95L6 12L12 6L6 0L4.93125 1.05L9.13125 5.25H0V6.75H9.13125Z"
+                fill={isLoading ? "#D3D3D3" : isSubmitHovered ? "#2642DE" : "#1C1B1F"} />
+            </svg>
           </button>
         </div>
       </form>
