@@ -353,7 +353,17 @@ export default function AgentComponent() {
             >
               {msg.role === "agent" ? (
                 // Render the agent's response as Markdown.
-                <ReactMarkdown>{msg.content}</ReactMarkdown>
+                <div style={{ width: "100%" }}>
+                  <ReactMarkdown
+                    components={{
+                      ul: ({ node, ...props }) => <ul style={{ paddingLeft: 0, marginLeft: 0, listStylePosition: 'inside' }} {...props} />,
+                      ol: ({ node, ...props }) => <ol style={{ paddingLeft: 0, marginLeft: 0, listStylePosition: 'inside' }} {...props} />,
+                      li: ({ node, ...props }) => <li style={{ paddingLeft: 0, marginLeft: 0 }} {...props} />,
+                    }}
+                  >
+                    {msg.content}
+                  </ReactMarkdown>
+                </div>
               ) : (
                 // Display user messages as plain text.
                 msg.content
