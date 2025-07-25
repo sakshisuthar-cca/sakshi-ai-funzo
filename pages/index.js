@@ -247,7 +247,7 @@ export default function AgentComponent() {
       backgroundColor: "#fff",
       color: "#2642DE",
       fontFamily: "Geist, 'Geist Sans', 'Geist Mono', Arial, sans-serif",
-      fontSize: "12px",
+      fontSize: "14px",
       fontStyle: "normal",
       fontWeight: 400,
       lineHeight: "14px",
@@ -264,7 +264,7 @@ export default function AgentComponent() {
       borderLeft: "5px solid #aaf",
       margin: "0",
       maxWidth: "80%",
-      fontSize: "12px",
+      fontSize: "14px",
     },
   };
 
@@ -331,7 +331,7 @@ export default function AgentComponent() {
             overflowY: "auto", // Enable vertical scrolling
             padding: "0px",
             borderRadius: "5px 5px 0 0",
-            backgroundColor: "#eee",
+            backgroundColor: "#fff",
             width: "100%",
           }}
         >
