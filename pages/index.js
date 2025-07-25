@@ -252,7 +252,8 @@ export default function AgentComponent() {
       fontWeight: 400,
       lineHeight: "14px",
       margin: 0,
-      maxWidth: "80%",
+      maxWidth: "242px",
+      marginRight: "12px",
       wordBreak: "break-word",
     },
     agent: {
@@ -272,7 +273,8 @@ export default function AgentComponent() {
       fontWeight: 400,
       lineHeight: "14px",
       margin: 0,
-      maxWidth: "80%",
+      maxWidth: "242px",
+      marginLeft: "12px",
       wordBreak: "break-word",
     },
   };
