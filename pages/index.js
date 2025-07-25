@@ -27,7 +27,6 @@ import { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 // Import UUID to generate session ID
 import { v4 as uuidv4 } from "uuid";
-import React from "react"; // Added for React.Children.map
 
 /**
  * Retrieves or generates a session ID and stores it in sessionStorage.
@@ -236,8 +235,12 @@ export default function AgentComponent() {
    */
   const bubbleStyles = {
     user: {
-      display: "inline-block", // Avoids flex alignment issues
+      display: "inline-flex",
       padding: "10px 16px",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      gap: "4px",
       alignSelf: "flex-end",
       borderRadius: "16px 16px 0 16px",
       border: "1.5px solid #2642DE",
@@ -249,17 +252,16 @@ export default function AgentComponent() {
       fontWeight: 400,
       lineHeight: "14px",
       margin: 0,
-      maxWidth: "242px",
-      width: "fit-content",
-      marginRight: "12px",
-      wordWrap: "break-word",
-      whiteSpace: "pre-wrap",
-      boxSizing: "border-box",
-      textAlign: "left", // Ensures proper alignment
+      maxWidth: "80%",
+      wordBreak: "break-word",
     },
     agent: {
-      display: "inline-block",
+      display: "inline-flex",
       padding: "10px 16px",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      gap: "4px",
       alignSelf: "flex-start",
       borderRadius: "16px 16px 16px 0",
       background: "#F4F4F4",
@@ -270,13 +272,8 @@ export default function AgentComponent() {
       fontWeight: 400,
       lineHeight: "14px",
       margin: 0,
-      maxWidth: "242px",
-      width: "fit-content",
-      marginLeft: "12px",
-      wordWrap: "break-word",
-      whiteSpace: "pre-wrap",
-      boxSizing: "border-box",
-      textAlign: "left", // Ensures proper alignment
+      maxWidth: "80%",
+      wordBreak: "break-word",
     },
   };
 
@@ -337,7 +334,7 @@ export default function AgentComponent() {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "18px",
+            gap: "12px",
             marginBottom: "0px",
             height: chatConfig.maxChatHeight, // Set a fixed height for the chat container
             overflowY: "auto", // Enable vertical scrolling
@@ -350,42 +347,11 @@ export default function AgentComponent() {
           {conversation.map((msg, index) => (
             <div
               key={index}
-              className="bubble"
               style={msg.role === "user" ? bubbleStyles.user : bubbleStyles.agent}
             >
               {msg.role === "agent" ? (
                 // Render the agent's response as Markdown.
-                <ReactMarkdown
-                  components={{
-                    ul: ({ children }) => <>{children}</>,
-                    ol: ({ children }) => <>{children}</>,
-                    li: ({ children, node, ...props }) => {
-                      // Check if this li is a subpoint (nested inside another li)
-                      const isSubPoint = node?.parent?.type === 'listItem';
-                      // Remove <p> wrappers if present
-                      const cleanChildren = React.Children.map(children, child => {
-                        if (React.isValidElement(child) && child.type === 'p') {
-                          return child.props.children;
-                        }
-                        return child;
-                      });
-                      if (isSubPoint) {
-                        return <p className="sub-point" {...props}>{cleanChildren}</p>;
-                      } else {
-                        return <p className="main-point" {...props}>{cleanChildren}</p>;
-                      }
-                    },
-                    h1: ({ children, ...props }) => <span className="heading" {...props}>{children}</span>,
-                    h2: ({ children, ...props }) => <span className="heading" {...props}>{children}</span>,
-                    h3: ({ children, ...props }) => <span className="heading" {...props}>{children}</span>,
-                    h4: ({ children, ...props }) => <span className="heading" {...props}>{children}</span>,
-                    h5: ({ children, ...props }) => <span className="heading" {...props}>{children}</span>,
-                    h6: ({ children, ...props }) => <span className="heading" {...props}>{children}</span>,
-                    p: ({ children, ...props }) => <span className="body" {...props}>{children}</span>,
-                  }}
-                >
-                  {msg.content}
-                </ReactMarkdown>
+                <ReactMarkdown>{msg.content}</ReactMarkdown>
               ) : (
                 // Display user messages as plain text.
                 msg.content
@@ -529,17 +495,44 @@ export default function AgentComponent() {
               height: "auto",
             }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 12 12"
-              fill="none"
-              style={{ width: "16px", height: "16px", aspectRatio: "1 / 1", display: "block" }}
-            >
-              <path d="M9.13125 6.75L4.93125 10.95L6 12L12 6L6 0L4.93125 1.05L9.13125 5.25H0V6.75H9.13125Z"
-                fill={isLoading ? "#D3D3D3" : isSubmitHovered ? "#2642DE" : "#1C1B1F"} />
-            </svg>
+            {!isLoading ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 12 12"
+                fill="none"
+                style={{ width: "16px", height: "16px", aspectRatio: "1 / 1", display: "block" }}
+              >
+                <path d="M9.13125 6.75L4.93125 10.95L6 12L12 6L6 0L4.93125 1.05L9.13125 5.25H0V6.75H9.13125Z"
+                 fill={isSubmitHovered ? "#2642DE" : "#1C1B1F"} />
+              </svg>
+            ) : (
+              <svg
+                width="36px"
+                height="36px"
+                viewBox="0 0 50 50"
+                style={{ animation: "spin 1s linear infinite" }}
+              >
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="20"
+                  stroke="#888"
+                  strokeWidth="12"
+                  fill="none"
+                />
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="20"
+                  stroke="#fff"
+                  strokeWidth="12"
+                  strokeDasharray="31.4 31.4"
+                  fill="none"
+                />
+              </svg>
+            )}
           </button>
         </div>
       </form>
@@ -576,40 +569,6 @@ export default function AgentComponent() {
           to {
             transform: rotate(360deg);
           }
-        }
-      `}</style>
-      <style jsx global>{`
-        .bubble ul,
-        .bubble ol {
-          list-style: none;    /* Remove bullets */
-          padding: 0;
-          margin: 0;
-        }
-        .bubble li {
-          margin: 8px 0;       /* Space between points */
-          display: block;
-        }
-        .bubble li li {
-          margin-left: 16px;   /* Indent subpoint text */
-          font-size: 0.95em;   /* Slightly smaller text (optional) */
-          color: #444;         /* Slightly muted color (optional) */
-        }
-        .main-point {
-          margin: 8px 0;
-          font-weight: 500;
-        }
-        .sub-point {
-          margin: 4px 0 4px 16px;  /* Indentation for hierarchy */
-          font-size: 0.95em;
-        }
-        .bubble p, .bubble .main-point, .bubble .sub-point, .bubble .body, .bubble .heading {
-          font-weight: 400;
-          margin: 4px 0;
-          line-height: 1;
-        }
-        .bubble .heading {
-          font-weight: 600;
-          margin: 6px 0 2px;
         }
       `}</style>
     </div>
