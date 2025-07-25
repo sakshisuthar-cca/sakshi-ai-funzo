@@ -248,7 +248,8 @@ export default function AgentComponent() {
       fontWeight: 400,
       lineHeight: "14px",
       margin: 0,
-      maxWidth: "242px",
+      minWidth: "fit-content",
+      maxWidth: "250px",
       marginRight: "12px",
       wordBreak: "break-word",
       textAlign: "left", // Ensures proper alignment
