@@ -235,12 +235,8 @@ export default function AgentComponent() {
    */
   const bubbleStyles = {
     user: {
-      display: "inline-flex",
+      display: "inline-block",
       padding: "10px 16px",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "flex-start",
-      gap: "4px",
       alignSelf: "flex-end",
       borderRadius: "16px 16px 0 16px",
       border: "1.5px solid #2642DE",
@@ -255,6 +251,7 @@ export default function AgentComponent() {
       maxWidth: "242px",
       marginRight: "12px",
       wordBreak: "break-word",
+      textAlign: "left",
     },
     agent: {
       display: "inline-flex",
