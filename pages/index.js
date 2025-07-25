@@ -235,15 +235,25 @@ export default function AgentComponent() {
    */
   const bubbleStyles = {
     user: {
+      display: "inline-flex",
+      padding: "10px 16px",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      gap: "4px",
       alignSelf: "flex-end",
-      backgroundColor: "#DCF8C6",
-      color: "#000",
-      padding: "10px",
-      borderRadius: "10px 0 0 10px",
-      borderRight: "5px solid #8EDB5A",
-      margin: "0",
-      maxWidth: "80%",
+      borderRadius: "16px 16px 0 16px",
+      border: "1.5px solid #2642DE",
+      backgroundColor: "#fff",
+      color: "#2642DE",
+      fontFamily: "Geist, 'Geist Sans', 'Geist Mono', Arial, sans-serif",
       fontSize: "12px",
+      fontStyle: "normal",
+      fontWeight: 400,
+      lineHeight: "14px",
+      margin: 0,
+      maxWidth: "80%",
+      wordBreak: "break-word",
     },
     agent: {
       alignSelf: "flex-start",
@@ -315,7 +325,7 @@ export default function AgentComponent() {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "5px",
+            gap: "12px",
             marginBottom: "0px",
             height: chatConfig.maxChatHeight, // Set a fixed height for the chat container
             overflowY: "auto", // Enable vertical scrolling
