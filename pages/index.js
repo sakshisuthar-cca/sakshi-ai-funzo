@@ -89,9 +89,6 @@ export default function AgentComponent() {
   // State to track if the agent is processing (loading state).
   const [isLoading, setIsLoading] = useState(false);
 
-  // Create a ref to track the end of the messages container.
-  const messagesEndRef = useRef(null);
-
   // Initialize session ID and user ID states.
   const [sessionId, setSessionId] = useState("");
   const [userId, setUserId] = useState("");
@@ -110,20 +107,6 @@ export default function AgentComponent() {
     setSessionId(getSessionId());
     setUserId(getUserId());
   }, []);
-
-  /**
-   * Scrolls the chat container to the bottom to ensure the latest message is visible.
-   */
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  // Scroll to the latest message whenever the conversation updates.
-  useEffect(() => {
-    if (document.querySelector(".chat-container")) {
-      scrollToBottom();
-    }
-  }, [conversation]);
 
   /**
    * Handles the form submission event.
@@ -373,8 +356,6 @@ export default function AgentComponent() {
             </div>
           );
         })}
-        {/* Dummy element to ensure the latest message is scrolled into view */}
-        <div ref={messagesEndRef} />
         </div>
       )}
 
