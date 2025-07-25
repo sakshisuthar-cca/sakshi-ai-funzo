@@ -304,6 +304,7 @@ export default function AgentComponent() {
         borderRadius: "5px",
         border: "1px solid #ccc",
         height: "494px", // Fixed height for the UI
+        position: "relative",
       }}
     >
       {/* Descriptive header for the chat application */}
@@ -349,10 +350,14 @@ export default function AgentComponent() {
       {!promptSelected && (
         <div
           style={{
+            position: "absolute",
+            top: "182px",
+            left: 0,
+            right: 0,
             display: "flex",
             flexDirection: "column",
-            alignItems: "flex-start",
-            gap: "6px",
+            alignItems: "center",
+            gap: "8px",
             alignSelf: "stretch",
             border: "1px solid #ccc",
             marginBottom: "0px",
@@ -424,6 +429,7 @@ export default function AgentComponent() {
             borderRadius: "24px",
             background: "#F4F4F4",
             width: "100%",
+            marginBottom: "30px",
           }}
         >
           <input
