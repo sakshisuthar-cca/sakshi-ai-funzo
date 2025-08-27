@@ -23,7 +23,7 @@ const chatConfig = {
   suggestedPrompts: [
     "What is your work style?",
     "Tell me about your work experience.",
-    "What tools does she use in her workflow?",
+    "What tools do you use in your workflow?",
   ],
   chatInputPlaceholder: "Ask me.",
   maxChatHeight: 400,
